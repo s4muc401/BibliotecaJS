@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metodo Filter Exercicio</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            border: none;
+        }
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+        button {
+            width: 150px;
+            height: 40px;
+            background-color: blue;
+            color: #fff;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+        .curso {
+            display: flex;
+            justify-content: center;
+            width: 200px;
+            border: 4px solid #888;
+            border-radius: 10px;
+            padding: 10px;
+            margin: 5px 0px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .selecionado {
+            background-color: #800 !important;
+            color: #fcc !important;
+            border-color: #f00 !important;
+        }
+        .c1 {
+            background-color: #ccc;
+            color: #444;
+        }
+        .c2 {
+            background-color: #444;
+            color: #ccc;
+        }
+        .caixa {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            margin: 5px;
+            height: 500px;
+            width: 300px;
+            border: 4px solid #000;
+            background-color: #eee;
+        }
+        .btn-lixeira {
+            width: 25px;
+            cursor: pointer;
+        }
+        .caixaFuncionalidades {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            margin: 5px;
+        }
+        .comandos {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            width: 30%;
+        }
+        #caixaNovoCurso input {
+            padding: 5px;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div id="caixaNovoFuncionalidades" class="caixa">
+            <div id="caixaNovoCurso" class="caixaFuncionalidades">
+                <label>Nome do Curso:</label>
+                <input type="text" id="nomeDoCurso">
+                <button id="btnAdicionarNovoCurso">Adicionar Curso</button>
+            </div>
+            <div id="caixaRemoverCurso" class="caixaFuncionalidades">
+                <button id="btnRemoverCurso">Remover Selecionados</button>
+            </div>
+            <div id="caixaCursosSelecionados">
+                <button id="btnCursoSelecionado">Curso Selecionado</button>
+            </div>
+        </div>
+        <div id="caixaCursos" class="caixa">
+
+        </div>
+    </main>
+
+    <script>
+        const caixaCursos = document.querySelector("#caixaCursos");
+        const btn_c = [...document.querySelectorAll('.curso')];
+        const c1_2 = document.querySelector('#c1_2');
+        const btnCursoSelecionado = document.getElementById('btnCursoSelecionado');
+        const btnRemoverCurso = document.getElementById('btnRemoverCurso');
+        const cursos = ['HTML','PHP','SPRING','JS'];
+
+        cursos.map((el,chave)=>{
+            const novoElemento = document.createElement('div');
+            novoElemento.setAttribute('id','c'+chave);
+            novoElemento.setAttribute('class','curso c1');
+            novoElemento.innerHTML = el;
+
+            const comandos = document.createElement('div');
+            comandos.setAttribute('class','comandos');
+
+            const rb = document.createElement('input');
+            rb.setAttribute('type','radio');
+            rb.setAttribute('name','rb_curso');
+
+            comandos.appendChild(rb);
+
+            novoElemento.appendChild(comandos);
+
+            caixaCursos.appendChild(novoElemento);
+        });
+
+        const radioSelecionado = () => {
+            const todosRadios = [...document.querySelectorAll('input[type=radio]')];
+            let radioSelecionado = todosRadios.filter((el,ind,arr)=>{
+                return el.checked;
+            });
+            return radioSelecionado[0];
+        }
+
+        btnCursoSelecionado.addEventListener('click',(evt)=>{
+            const rs = radioSelecionado();
+            try {
+                const cursoSelecionado = rs.parentNode.previousSibling.textContent;
+                console.log(cursoSelecionado);
+            } catch (ex) {
+                alert('selecione algum curso');
+            }
+        });
+
+        btnRemoverCurso.addEventListener('click',()=>{
+            const rs = radioSelecionado();
+            if (rs!=undefined) {
+                const cursoSelecionado = rs.parentNode.parentNode;
+                cursoSelecionado.remove();
+            } else {
+                alert('selecione um curso');
+            }
+        });
+    </script>
+</body>
+</html>

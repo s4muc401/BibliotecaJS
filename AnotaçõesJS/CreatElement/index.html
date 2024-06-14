@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Createlement</title>
+</head>
+<body>
+    <div id="caixa1">
+        <!-- elementos serão adicionados aqui -->
+    </div>
+    <script>
+        // Com o creatElement tiu pode criar elementos em qualquer lugar da pagina
+        const caixa1 = document.querySelector("#caixa1");
+        const arrayBlocos = ['text1','text2','text3']
+
+        // el = elemento do array // chave = chave do elemento
+        arrayBlocos.map((el,chave)=>{
+            let novoElemento = document.createElement('div')
+            novoElemento.innerHTML = el;
+            novoElemento.setAttribute('id','bloco'+chave); // configurações
+            novoElemento.setAttribute('class','blocos');
+    
+            caixa1.appendChild(novoElemento);
+        });
+
+    </script>
+</body>
+</html>

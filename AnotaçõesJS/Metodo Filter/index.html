@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metodo Filter</title>
+</head>
+<body>
+    <script>
+        // Com o metodo Filter voçe pode filtrar elementos com programação.
+        // O metodo Filter filtra elementos de um conjunto de elementos.
+        const idades = [18,45,21,43,87,65,15,17];
+        const maior = idades.filter((valor)=>{
+            if (valor>18) {
+                return valor;
+            }
+        });
+        const menor = idades.filter((valor)=>{
+            if (valor<18) {
+                return valor;
+            }
+        });
+        // const filtrarMaior18 = (valor,indice,array) => {
+        //     // modo de funcionamento do filter, não é necessario usar todos os parametros.
+        // }
+        console.log(idades);
+        console.log(maior);
+        console.log(menor)
+    </script>
+</body>
+</html>

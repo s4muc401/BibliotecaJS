@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AddEventListener</title>
+    <style>
+        .destaque {
+            background-color: aqua;
+            width: 30%;
+            height: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div id="c1" class="cursosTipo1" onclick="msg()">Html</div>
+    <div id="c2" class="cursosTipo1">css</div>
+    <div id="c3" class="cursosTipo1">javascript</div>
+    <div id="c4" class="cursosTipo1">java</div>
+    <div id="c5" class="cursosTipo1">c#</div>
+
+    <div id="c6" class="cursosTipo2">Ingles</div>
+    <div id="c7" class="cursosTipo2">Azure</div>
+    <div id="c8" class="cursosTipo2">Aws</div>
+    <div id="c9" class="cursosTipo2">Excel</div>
+    <div id="c10" class="cursosTipo2">.net</div>
+    <script>
+        const c1 = document.querySelector('#c1');
+        const c2 = document.querySelector('#c2');
+        c1.addEventListener('click',()=>{
+            msg();
+        });
+        c2.addEventListener('click',(evt)=> {
+            const elemento = evt.target;
+            elemento.classList.add('destaque');
+        });
+
+        const cursos = [...document.querySelectorAll('.cursosTipo1')];
+        cursos.map((el)=>{
+            el.addEventListener('click',(evt)=>{
+                const elemento = evt.target;
+                elemento.classList.add('destaque');
+                console.log(el.innerHTML + "foi clicado");
+            });
+        })
+
+        const msg =()=>{
+            alert('clicou!');
+        }
+    </script>
+</body>
+</html>
