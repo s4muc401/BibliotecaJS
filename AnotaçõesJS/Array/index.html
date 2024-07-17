@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array</title>
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+            border: none;
+            box-sizing: border-box;
+            font-size: large;
+        }
+
+        .caixa {
+            width: 400px;
+            border: 5px solid #000;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            margin: 5px;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="caixa" class="caixa"></div>
+
+    <script>
+        const caixa = document.querySelector("#caixa");
+        let cursos=["JS","HTML","CSS"];
+
+        cursos.map((el)=>{
+            let p = document.createElement("p");
+            p.innerHTML = el;
+            caixa.appendChild(p);
+        })
+        console.log(cursos[0]);
+        cursos[0]="c++";
+        console.log(cursos[0]);
+    </script>
+</body>
+</html>

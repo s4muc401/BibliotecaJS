@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Objetos</title>
+</head>
+<body>
+
+    <div>
+        <div class="caixa">
+            <label for="iNome">Nome</label>
+            <input type="text" id="iNome">
+        </div>
+        <div class="caixa">
+            <label for="iIdade">Idade</label>
+            <input type="text" id="iIdade">
+        </div>
+        <button id="button">Adicionar</button>
+        <div id="res"></div>
+    </div>
+
+    <script>
+
+        class Pessoa {
+            constructor() {
+                this.nome = "Reb";
+            } // SERVE COMO INICIAÇÃO DA CLASSE (TIPO PARAMETROS)
+        }
+
+        let p1 = new Pessoa();
+
+        console.log(p1.nome);
+
+        class Teste {
+            constructor(tipo) {
+                this.tipo = tipo;
+            }
+        }
+
+        let teste1 = new Teste("Tipo 02");
+
+        console.log(teste1.tipo)
+
+        class Carro {
+            constructor(pnome,ptipo) {
+                this.nome = pnome;
+                if (ptipo == 1) {
+                    this.tipo = "Hatch";
+                    this.carga = 2;
+                } else if (ptipo == 2) {
+                    this.tipo = "Caçanba";
+                    this.carga = 40;
+                } else if (ptipo == 3) {
+                    this.tipo = "Caminhão";
+                    this.carga = 64;
+                } else {
+                    this.tipo = "Trator";
+                    this.carga = 12;
+                }
+            }
+
+            getTipo() {
+                return this.tipo;
+            } 
+            getNome() {
+                return this.nome;
+            } 
+            getCarga() {
+                return this.carga;
+            }
+            getInfo() {
+                return [this.nome,this.tipo,this.carga];
+            }
+            setNome(novoNome) {
+                this.nome = novoNome;
+            }
+
+        
+            info() {
+                console.log("Nome: " + this.nome + " Tipo: " + this.tipo + " Carga: " + this.carga);
+                console.log("-----------------------------------------")
+            }
+        }
+
+        let c1 = new Carro("Onix",1);
+        let c2 = new Carro("Mercedes 2630",2);
+        let c3 = new Carro("VW Worker",3);
+
+        c1.info();
+        c2.info();
+        c3.info();
+
+        c1.setNome("Gol")
+        console.log(c1.getInfo()[0]); // Retorna a primeira propriedade
+
+
+        // EXERCICIO
+
+        class Pessoa2 {
+            constructor(pnome,pidade) {
+                this.nome = pnome;
+                this.idade = pidade;
+            }
+
+            getNome() {
+                return this.nome;
+            } 
+            getIdade() {
+                return this.idade;
+            }
+            setNome(novoNome) {
+                this.nome = novoNome;
+            }
+            setIdade(novaIdade) {
+                this.idade = novaIdade;
+            }
+
+        
+            info() {
+                console.log("Nome: " + this.nome + " Idade: " + this.idade);
+                console.log("-----------------------------------------")
+            }
+        }
+
+        let pessoas = [];
+
+        const btnAdd = document.getElementById("button");
+        const res = document.getElementById("res");
+
+        btnAdd.addEventListener("click",(evt)=>{
+            const nome = document.getElementById("iNome");
+            const idade = document.getElementById("iIdade");
+            let p = new Pessoa2(nome.value,idade.value);
+            pessoas.push(p);
+            nome.value = "";
+            idade.value = "";
+            nome.focus();
+            addPessoa();
+        })
+
+        const addPessoa = () => {
+            res.innerHTML="";
+            pessoas.map((p)=>{
+                const div = document.createElement("div");
+                div.setAttribute("class","pessoa");
+                div.innerHTML=`Nome: ${p.getNome()}<br/>Idade: ${p.getIdade()}`;
+                res.appendChild(div);
+            });
+        };
+
+        // OBJETOS LITERAIS
+        const Teste = {
+            nome:"Teste1",
+            getNome:function(){
+                return this.nome;
+            },
+            setNome:function(novoNome){
+                this.nome = novoNome;
+            }
+        }
+
+        const t1 = Teste;
+        t1.setNome("teste2");
+    </script>
+</body>
+</html>
