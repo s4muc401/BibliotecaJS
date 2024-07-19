@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversão JS</title>
+</head>
+<body>
+    
+    <script>
+        const Alunos = {
+            nome:"Matheus",
+            curso:"Tec. Desenvolvimento de Sistemas",
+            aulas: {
+                aula1:"Teste1",
+                aula2:"Teste2"
+            }
+        }
+        console.log(Alunos.nome);
+        console.log(Alunos.curso);
+
+        console.log(JSON.stringify(Alunos));
+        const s_alunos = JSON.stringify(Alunos); // JS -> JSON
+        const alunosJS = JSON.parse(s_alunos); // JSON -> JS
+    </script>
+</body>
+</html>

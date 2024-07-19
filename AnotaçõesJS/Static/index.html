@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STATIC</title>
+    <style>
+        body {
+            background-color: #f60515;
+        }
+    </style>
+</head>
+<body>
+
+    <script>
+        class Npc {
+            static alerta = false; // PERTENCE A CLASSE E NÃO A SUAS INSTANCIAS UMA VEZ MUDADO MUDA EM TODAS AS INSTANCIAS
+            constructor(energia) {
+                this.energia = energia;
+            }
+            info=function(){
+                console.log(`Energia: ${this.energia} Alerta: ${Npc.alerta?"SIM":"NÃO"}`);
+            }
+            static alertar=function(){ // PERTENCE A CLASSE E NÃO A SUAS INSTANCIAS UMA VEZ MUDADO MUDA EM TODAS AS INSTANCIAS
+                Npc.alerta = true;
+            }
+        }
+
+        let n1 = new Npc(120);
+
+        //Npc.alerta = true;
+        Npc.alertar();
+
+        n1.info();
+    </script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prototype</title>
+</head>
+<body>
+    
+    <script>
+        const Nave=function(energia){
+            this.energia=energia;
+            this.disparos=100;
+        }
+
+        const n1 = new Nave(100);
+
+        Nave.prototype.vidas = 3;
+        Nave.prototype.disparar=function(){
+            if (this.disparos > 0){
+                this.disparos--;
+            }
+        } 
+
+        n1.disparar();
+        n1.disparar();
+        n1.disparar();
+        n1.disparar();
+        n1.disparar();
+
+
+        console.log(Nave);
+        console.log(n1);
+        console.log(n1.energia);
+        console.log(n1.disparos);   
+
+        const animal = {
+            tipo: 'vertebrado',
+            obterTipo: function() {
+                console.log(this.tipo);
+            }
+        };
+
+        const cachorro = Object.create(animal);
+        cachorro.tipo = 'mamífero';
+        cachorro.obterTipo(); // Saída: mamífero
+
+        function Veiculo(tipo) {
+            this.tipo = tipo;
+        }
+
+        Veiculo.prototype.obterTipo = function() {
+            console.log(this.tipo);
+        };
+
+        function Carro(tipo, marca) {
+            Veiculo.call(this, tipo); // Chama o construtor de Veiculo
+            this.marca = marca;
+        }
+
+        Carro.prototype = Object.create(Veiculo.prototype);
+        Carro.prototype.constructor = Carro;
+
+        const meuCarro = new Carro('carro', 'Toyota');
+        meuCarro.obterTipo(); // Saída: carro
+        console.log(meuCarro.marca); // Saída: Toyota
+
+
+    </script>
+</body>
+</html>
